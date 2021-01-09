@@ -11,6 +11,9 @@ export class UserSignupPage extends React.Component {
         <div>
           <input placeholder="Your username" />
         </div>
+        <div>
+          <input placeholder="Your password" />
+        </div>
       </div>
     );
   }
