@@ -99,5 +99,15 @@ describe("UserSignUpPage", () => {
 
       expect(passwordInput).toHaveValue("P4ssword");
     });
+    it("sets the password repeat value into state", () => {
+      const { queryByPlaceholderText } = render(<UserSignupPage />);
+      const passwordRepeatInput = queryByPlaceholderText(
+        "Repeat your password"
+      );
+
+      fireEvent.change(passwordRepeatInput, changeEvent("P4ssword"));
+
+      expect(passwordRepeatInput).toHaveValue("P4ssword");
+    });
   });
 });
