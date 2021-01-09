@@ -91,5 +91,13 @@ describe("UserSignUpPage", () => {
 
       expect(userNameInput).toHaveValue("my-user-name");
     });
+    it("sets the password value into state", () => {
+      const { queryByPlaceholderText } = render(<UserSignupPage />);
+      const passwordInput = queryByPlaceholderText("Your password");
+
+      fireEvent.change(passwordInput, changeEvent("P4ssword"));
+
+      expect(passwordInput).toHaveValue("P4ssword");
+    });
   });
 });
