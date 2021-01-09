@@ -58,5 +58,12 @@ describe("UserSignUpPage", () => {
 
       expect(passwordRepeatInput.type).toBe("password");
     });
+    it("has submit button", () => {
+      const { container } = render(<UserSignupPage />);
+
+      const button = container.querySelector("button");
+
+      expect(button).toBeInTheDocument();
+    });
   });
 });
