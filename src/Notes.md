@@ -38,3 +38,34 @@
 - for assertions we use `expect` API with **matchers**
 - to check the text content of html element `toHaveTextContent` matcher can be used
 - `toBeInTheDocument` matcher checks for element to be present in the document.
+- `toHaveValue` matcher checks for `value` attribute of input element.
+
+## Handling input change
+
+### simulating user input in test
+
+- `fireEvent` triggers content change and simulates user input action
+- `change` function of fireEvent takes 2 parameters.
+
+  - input field
+  - changeEvent
+
+- in html input component, whenever a change occurs it triggers an event and this event object carries input value inside **target object value field**
+
+```
+eg.
+const changeEvent = {
+        target: {
+          value: "my-display-name",
+        },
+      };
+```
+
+- Input element has it's inner value state.
+- If we want to specify our own state to it then we also have to provide callback function to handle change events.
+
+### setting callback function onChange event for input
+
+- to modify state we call `this.setState({ property: value })`
+- setState is a part of component
+- we can just provide change set of json to setState, it merges that input with existing state.
