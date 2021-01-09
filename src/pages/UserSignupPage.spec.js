@@ -160,5 +160,21 @@ describe("UserSignUpPage", () => {
 
       expect(() => fireEvent.click(button)).not.toThrow();
     });
+
+    it("calls post with user body when the fields are valid", () => {
+      const actions = {
+        postSignup: jest.fn().mockResolvedValueOnce({}),
+      };
+      setupForSubmit({ actions });
+      const expectedUserObject = {
+        username: "my-user-name",
+        displayName: "my-display-name",
+        password: "P4ssword",
+      };
+
+      fireEvent.click(button);
+
+      expect(actions.postSignup).toHaveBeenCalledWith(expectedUserObject);
+    });
   });
 });
