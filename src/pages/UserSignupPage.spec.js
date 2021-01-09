@@ -12,6 +12,7 @@ describe("UserSignUpPage", () => {
 
       expect(header).toHaveTextContent("Sign Up");
     });
+
     it("has input for display name", () => {
       const { queryByPlaceholderText } = render(<UserSignupPage />);
 
@@ -19,6 +20,7 @@ describe("UserSignUpPage", () => {
 
       expect(displayNameInput).toBeInTheDocument();
     });
+
     it("has input for username", () => {
       const { queryByPlaceholderText } = render(<UserSignupPage />);
 
@@ -26,6 +28,7 @@ describe("UserSignUpPage", () => {
 
       expect(usernameInput).toBeInTheDocument();
     });
+
     it("has input for password", () => {
       const { queryByPlaceholderText } = render(<UserSignupPage />);
 
@@ -33,6 +36,7 @@ describe("UserSignUpPage", () => {
 
       expect(passwordInput).toBeInTheDocument();
     });
+
     it("has password type for password input", () => {
       const { queryByPlaceholderText } = render(<UserSignupPage />);
 
@@ -40,6 +44,7 @@ describe("UserSignUpPage", () => {
 
       expect(passwordInput.type).toBe("password");
     });
+
     it("has input for password repeat", () => {
       const { queryByPlaceholderText } = render(<UserSignupPage />);
 
@@ -49,6 +54,7 @@ describe("UserSignUpPage", () => {
 
       expect(passwordRepeatInput).toBeInTheDocument();
     });
+
     it("has password type for repeat password input", () => {
       const { queryByPlaceholderText } = render(<UserSignupPage />);
 
@@ -58,6 +64,7 @@ describe("UserSignUpPage", () => {
 
       expect(passwordRepeatInput.type).toBe("password");
     });
+
     it("has submit button", () => {
       const { container } = render(<UserSignupPage />);
 
@@ -66,6 +73,7 @@ describe("UserSignUpPage", () => {
       expect(button).toBeInTheDocument();
     });
   });
+
   describe("Interactions", () => {
     const changeEvent = (content) => {
       return {
@@ -83,6 +91,7 @@ describe("UserSignUpPage", () => {
 
       expect(displayNameInput).toHaveValue("my-display-name");
     });
+
     it("sets the username value into state", () => {
       const { queryByPlaceholderText } = render(<UserSignupPage />);
       const userNameInput = queryByPlaceholderText("Your username");
@@ -91,6 +100,7 @@ describe("UserSignUpPage", () => {
 
       expect(userNameInput).toHaveValue("my-user-name");
     });
+
     it("sets the password value into state", () => {
       const { queryByPlaceholderText } = render(<UserSignupPage />);
       const passwordInput = queryByPlaceholderText("Your password");
@@ -99,6 +109,7 @@ describe("UserSignUpPage", () => {
 
       expect(passwordInput).toHaveValue("P4ssword");
     });
+
     it("sets the password repeat value into state", () => {
       const { queryByPlaceholderText } = render(<UserSignupPage />);
       const passwordRepeatInput = queryByPlaceholderText(
@@ -108,6 +119,30 @@ describe("UserSignUpPage", () => {
       fireEvent.change(passwordRepeatInput, changeEvent("P4ssword"));
 
       expect(passwordRepeatInput).toHaveValue("P4ssword");
+    });
+
+    it("calls postSignup when the fields are valid and the actions are provided in the props", () => {
+      const actions = {
+        postSignup: jest.fn().mockResolvedValueOnce({}),
+      };
+      const { container, queryByPlaceholderText } = render(
+        <UserSignupPage actions={actions} />
+      );
+      const displayNameInput = queryByPlaceholderText("Your display name");
+      const userNameInput = queryByPlaceholderText("Your username");
+      const passwordInput = queryByPlaceholderText("Your password");
+      const passwordRepeatInput = queryByPlaceholderText(
+        "Repeat your password"
+      );
+      fireEvent.change(displayNameInput, changeEvent("my-display-name"));
+      fireEvent.change(userNameInput, changeEvent("my-user-name"));
+      fireEvent.change(passwordInput, changeEvent("P4ssword"));
+      fireEvent.change(passwordRepeatInput, changeEvent("P4ssword"));
+      const button = container.querySelector("button");
+
+      fireEvent.click(button);
+
+      expect(actions.postSignup).toHaveBeenCalledTimes(1);
     });
   });
 });
