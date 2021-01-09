@@ -69,3 +69,19 @@ const changeEvent = {
 - to modify state we call `this.setState({ property: value })`
 - setState is a part of component
 - we can just provide change set of json to setState, it merges that input with existing state.
+
+### passing functions through props
+
+- we can pass props to the component and access it using `this.props.<Property_Name>`
+- we need to use props carefully because if they are not passed properly then we can get undefined error.
+
+### React default properties for components
+
+- `Component.defaultProps` is a JSON object which holds default values for props required by the component.
+- syntax to return a promise is
+
+```
+new Promise((resolve, reject) => {
+        resolve({});
+      }),
+```

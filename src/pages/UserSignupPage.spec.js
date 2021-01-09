@@ -144,5 +144,22 @@ describe("UserSignUpPage", () => {
 
       expect(actions.postSignup).toHaveBeenCalledTimes(1);
     });
+
+    it("does not throw exception when clicking button when actions are not provided in the props", () => {
+      const { container, queryByPlaceholderText } = render(<UserSignupPage />);
+      const displayNameInput = queryByPlaceholderText("Your display name");
+      const userNameInput = queryByPlaceholderText("Your username");
+      const passwordInput = queryByPlaceholderText("Your password");
+      const passwordRepeatInput = queryByPlaceholderText(
+        "Repeat your password"
+      );
+      fireEvent.change(displayNameInput, changeEvent("my-display-name"));
+      fireEvent.change(userNameInput, changeEvent("my-user-name"));
+      fireEvent.change(passwordInput, changeEvent("P4ssword"));
+      fireEvent.change(passwordRepeatInput, changeEvent("P4ssword"));
+      const button = container.querySelector("button");
+
+      expect(() => fireEvent.click(button)).not.toThrow();
+    });
   });
 });
