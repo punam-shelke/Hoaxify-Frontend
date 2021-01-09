@@ -40,5 +40,23 @@ describe("UserSignUpPage", () => {
 
       expect(passwordInput.type).toBe("password");
     });
+    it("has input for password repeat", () => {
+      const { queryByPlaceholderText } = render(<UserSignupPage />);
+
+      const passwordRepeatInput = queryByPlaceholderText(
+        "Repeat your password"
+      );
+
+      expect(passwordRepeatInput).toBeInTheDocument();
+    });
+    it("has password type for repeat password input", () => {
+      const { queryByPlaceholderText } = render(<UserSignupPage />);
+
+      const passwordRepeatInput = queryByPlaceholderText(
+        "Repeat your password"
+      );
+
+      expect(passwordRepeatInput.type).toBe("password");
+    });
   });
 });
