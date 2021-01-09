@@ -12,5 +12,12 @@ describe("UserSignUpPage", () => {
 
       expect(header).toHaveTextContent("Sign Up");
     });
+    it("has input for display name", () => {
+      const { queryByPlaceholderText } = render(<UserSignupPage />);
+
+      const displayNameInput = queryByPlaceholderText("Your display name");
+
+      expect(displayNameInput).toBeInTheDocument();
+    });
   });
 });
