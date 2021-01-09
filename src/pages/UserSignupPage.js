@@ -3,6 +3,7 @@ import React from "react";
 export class UserSignupPage extends React.Component {
   state = {
     displayName: "",
+    username: "",
   };
 
   onChangeDisplayName = (event) => {
@@ -10,6 +11,10 @@ export class UserSignupPage extends React.Component {
     this.setState({ displayName: value });
   };
 
+  onChangeUsername = (event) => {
+    const value = event.target.value;
+    this.setState({ username: value });
+  };
   render() {
     return (
       <div>
@@ -22,7 +27,11 @@ export class UserSignupPage extends React.Component {
           />
         </div>
         <div>
-          <input placeholder="Your username" />
+          <input
+            placeholder="Your username"
+            value={this.state.username}
+            onChange={this.onChangeUsername}
+          />
         </div>
         <div>
           <input placeholder="Your password" type="password" />
