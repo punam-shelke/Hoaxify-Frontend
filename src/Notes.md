@@ -31,7 +31,7 @@
 - `container.querySelector` get the particular element of component
 - `queryByPlaceholderText` function can find the input element with specific placeholder value.
 
-**we get these query functions by javascript's destructuring functionality**
+**we get these query functions by javascript's object destructuring functionality**
 
 ## Assertion
 
@@ -50,7 +50,7 @@
   - input field
   - changeEvent
 
-- in html input component, whenever a change occurs it triggers an event and this event object carries input value inside **target object value field**
+- in html input component, whenever a change occurs it triggers an event and this event object carries input value inside **target object's value field**
 
 ```
 eg.
@@ -62,13 +62,17 @@ const changeEvent = {
 ```
 
 - Input element has it's inner value state.
-- If we want to specify our own state to it then we also have to provide callback function to handle change events.
+- If we want to specify our own state to it which we can access and use somewhere else then
+  - provide state object to hold values from change event
+  - we also have to provide callback function to handle change event
 
 ### setting callback function onChange event for input
 
 - to modify state we call `this.setState({ property: value })`
 - setState is a part of component
 - we can just provide change set of json to setState, it merges that input with existing state.
+
+## Handling Button Click
 
 ### passing functions through props
 
